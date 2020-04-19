@@ -1,0 +1,33 @@
+{
+  "name": "william-lego",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markusahlstrand/william-lego.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markusahlstrand/william-lego/issues"
+  },
+  "homepage": "https://github.com/markusahlstrand/william-lego#readme",
+  "dependencies": {
+    "cloudworker-proxy": "1.8.0",
+    "dotenv": "8.2.0"
+  },
+  "devDependencies": {
+    "node-cloudworker": "1.1.3",
+    "serve": "11.3.0",
+    "serverless": "1.67.3",
+    "serverless-cloudflare-workers": "1.2.0",
+    "serverless-dotenv-plugin": "2.4.2",
+    "serverless-scriptable-plugin": "1.0.5",
+    "webpack": "4.42.1",
+    "webpack-cli": "3.3.11"
+  }
+}

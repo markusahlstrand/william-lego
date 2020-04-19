@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .gubbe {
+        height: 130px;
+        width: 100px;
+        display: inline-block;
+        position: absolute;
+      }
+
+      #gubbe {
+        position: absolute;
+      }
+
+      #game {
+        background-image: url("/images/pin.jpg");
+        background-size: 20px;
+        height: 300px;
+        width: 100%;
+        position: absolute;
+        top: 220px;
+      }
+
+      #botten {
+        background-color: black;
+        height: 5px;
+        width: 100%;
+        position: absolute;
+        top: 520px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to chump jump!</h1>
+    <div id="bounce"></div>
+    <div id="game"></div>
+    <img
+      class="gubbe"
+      id="gubbe"
+      style="right: 400px; top: 400px;"
+      src="/images/standing.png"
+    />
+    <script src="js/game.js"></script>
+  </body>
+</html>

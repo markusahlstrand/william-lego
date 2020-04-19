@@ -1,0 +1,53 @@
+# serverless.yml
+service:
+  name: disvolvigo-io-proxy-${opt:stage}
+
+provider:
+  name: cloudflare
+  environment:
+    CLOUDFLARE_ACCOUNT_ID: ${env:CLOUDFLARE_ACCOUNT_ID}
+    CLOUDFLARE_ZONE_ID: ${env:CLOUDFLARE_ZONE_ID}
+    CLOUDFLARE_AUTH_KEY: ${env:CLOUDFLARE_AUTH_KEY}
+    CLOUDFLARE_AUTH_EMAIL: ${env:CLOUDFLARE_AUTH_EMAIL}
+    KV_NAMESPACE_STATIC: ${env:KV_NAMESPACE_STATIC}
+  config:
+    accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+    zoneId: ${env:CLOUDFLARE_ZONE_ID}
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-scriptable-plugin
+  - serverless-cloudflare-workers
+
+custom:
+  environments:
+    test:
+      subDomain: ".test"
+    prod:
+      subDomain: ""
+  stage: ${opt:stage}
+  scriptHooks:
+    package:createDeploymentArtifacts: npm run build
+  dotenv:
+    path: ./.env
+
+functions:
+  disvolvigo-io-proxy:
+    # What the script will be called on Cloudflare (this property value must match the function name one line above)
+    name: disvolvigo-io-proxy-${opt:stage}
+    # The name of the script on your machine, omitting the .js file extension
+    script: "dist/bundle"
+    webpack: false
+    events:
+      - http:
+          url: api${self:custom.environments.${opt:stage}.subDomain}.disvolvigo.io/*
+          method: ANY
+      - http:
+          url: app${self:custom.environments.${opt:stage}.subDomain}.disvolvigo.io/*
+          method: ANY
+      - http:
+          url: test${self:custom.environments.${opt:stage}.subDomain}.disvolvigo.io/*
+          method: ANY
+      - http:
+          url: www${self:custom.environments.${opt:stage}.subDomain}.disvolvigo.io/*
+          method: ANY
