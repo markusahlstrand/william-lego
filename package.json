@@ -28,6 +28,6 @@
     "serverless-dotenv-plugin": "2.4.2",
     "serverless-scriptable-plugin": "1.0.5",
     "webpack": "4.42.1",
-    "webpack-cli": "3.3.11"
+    "webpack-cli": "3.3.12"
   }
 }
